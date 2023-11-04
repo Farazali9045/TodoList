@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            color: aliceblue;
+        }
+        .wrapper{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000000;
+            padding: 0px 15px;
+        }
+        .todo-box{
+            height: 380px;
+            width: 320px;
+            border: 3px solid rgb(15, 247, 77);
+            border-radius: 10px;
+            box-shadow: rgba(15, 247, 77, 0.1) 0px 1px 0px, rgba(15, 247, 77, 0.1) 0px 8px 24px, rgba(15, 247, 77, 0.1) 0px 16px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            padding: 10px 25px;
+        }
+        h2{
+            text-align: center;
+            font-size: 2rem; 
+            color: rgb(15, 247, 77);
+        }
+        input
+        {
+            height: 35px;
+            border-radius: 5px;
+            border: none;
+            padding-left: 10px;
+            background-color: transparent;
+            /* background:rgba(255,255,255,.2);
+            backdrop-filter: blur(5px); */
+            font-size: 0.9rem;
+            outline: none;
+            box-shadow: rgb(15, 247, 77) 2px 2px 6px 0px inset, rgba(15, 247, 77, 0.5) -2px -2px 6px 1px inset;
+            color: rgb(15, 247, 77);
+        }
+        input::placeholder{
+            color: rgb(15, 247, 77);
+        }
+        
+        ul{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            width: 100%;
+            height: 150px;
+            padding: 0px 25px;
+           
+            
+        }
+        li
+        
+        {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgb(15, 247, 77);
+            font-size: 1rem;
+        }
+        .delBtn{
+            border: 1px solid rgba(15, 247, 77);
+            border-radius: 4px;
+            padding: 5px 10px;
+            background-color: transparent;
+            color: rgb(15, 247, 77);
+            cursor: pointer;
+            transition: 0.2s linear;
+           
+
+        }
+        .delBtn:hover{
+            background-color: rgb(15, 247, 77);
+            color: #000000;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="todo-box">
+            <h2>Todo List</h2>
+            <input type="text" placeholder="write anything!">
+            <button class="addBtn delBtn" >Add Task</button>
+            <ul>
+                <li>Eat<button class = "delBtn">Delete</button></li>
+                <li>Code<button class = "delBtn">Delete</button></li>
+                <li>Sleep<button class = "delBtn">Delete</button></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        let ul = document.querySelector('ul')
+        let input = document.querySelector('input');
+        let addBtn = document.querySelector('.addBtn');
+        addBtn.addEventListener('click',function(){
+           let item = document.createElement('li');
+           item.innerText  = input.value;
+           ul.appendChild(item);
+           let delBtn = document.createElement('button');
+           delBtn.innerText = "Delete";
+           delBtn.classList.add('delBtn');
+           item.appendChild(delBtn);
+           input.value = "";
+           let delBtns = document.querySelectorAll('.delBtn');
+           for(delBtn of delBtns){
+            delBtn.addEventListener('click',function(){
+               let par = this.parentElement;
+             console.log(par);
+               par.remove();
+            });}
+
+        });
+        let delBtns = document.querySelectorAll('.delBtn');
+           for(delBtn of delBtns){
+            delBtn.addEventListener('click',function(){
+               let par = this.parentElement;
+             console.log(par);
+               par.remove();
+            });}
+    </script>
+</body>
+</html>
+
